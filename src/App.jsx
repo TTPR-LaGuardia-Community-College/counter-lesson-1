@@ -6,17 +6,6 @@ import './App.css'
 function App() {
   const [count, setCount] = useState(0)
 
-  function checkNumber() {
-    if (count >= 0) {
-      return count
-    } else {
-      // Lets make sure count is set to zero using set state
-      setCount((count) => count = 0)
-      // This set state will cause a re-reneder of the UI calling checkNumber again with the count of 0
-      // Making the (count >= 0) if statement true 
-    }
-  }
-
   return (
     <>
       <div>
@@ -29,12 +18,19 @@ function App() {
       </div>
       <h1>Vite + React</h1>
       <div className="card">
-        <h3>count is {checkNumber()}</h3>
+        <h3>count is {count}</h3>
         <button onClick={() => setCount((count) => count + 1)}>
-          +
+          +1
         </button>
-        <button onClick={() => setCount((count) => count - 1)}>
-          -
+        <button onClick={() => {
+          if(count>0){
+            setCount((count) => count - 1)} //reduces count by 1 if count is greater than 0
+          else{
+            alert("You are already at 0.")} //alerts user that count cannot go lower than 0
+            } //end of if/else statement
+            } //end of onClick event
+            >
+          -1
         </button>
         <p>
           Edit <code>src/App.jsx</code> and save to test HMR
