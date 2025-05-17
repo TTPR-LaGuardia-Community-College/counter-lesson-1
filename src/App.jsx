@@ -5,17 +5,10 @@ import './App.css'
 
 function App() {
   const [count, setCount] = useState(0)
-
-  function checkNumber() {
-    if (count >= 0) {
-      return count
-    } else {
-      // Lets make sure count is set to zero using set state
-      setCount((count) => count = 0)
-      // This set state will cause a re-reneder of the UI calling checkNumber again with the count of 0
-      // Making the (count >= 0) if statement true 
-    }
-  }
+  
+  function clamp(n) {
+  return n < 0 ? 0 : n;
+}
 
   return (
     <>
@@ -29,11 +22,11 @@ function App() {
       </div>
       <h1>Vite + React</h1>
       <div className="card">
-        <h3>count is {checkNumber()}</h3>
-        <button onClick={() => setCount((count) => count + 1)}>
+        <h3>count is {count}</h3>
+        <button onClick={() => setCount(c => clamp (c + 1))}>
           +
         </button>
-        <button onClick={() => setCount((count) => count - 1)}>
+        <button onClick={() => setCount(c => clamp (c - 1))}>
           -
         </button>
         <p>
